@@ -10,7 +10,7 @@ const RealTimeChart = () => {
   const candlestickSeriesRef = useRef(null);
   const { data } = useWebSocket();
   const theme = useTheme();
-  const [lastDate, setLastDate] = useState(null); 
+  const [lastDate, setLastDate] = useState(new Date()); 
 
 
   const formatDate = (date) => {
@@ -23,8 +23,8 @@ const RealTimeChart = () => {
   // Generate initial dummy data
   const generateInitialData = () => {
     const initialData = [];
-    let currentDate = new Date();
-    const baseTimestamp = Math.floor(new Date().getTime() / 1000) - 10 * 60; // 10 minutes ago
+    let currentDate = lastDate
+   
     let previousClose = 150; // Arbitrary starting price
 
     for (let i = 0; i < 10; i++) {
@@ -100,7 +100,6 @@ const RealTimeChart = () => {
   // Update chart with real-time data
   useEffect(() => {
     if (data && candlestickSeriesRef.current) {
-      const newDate = new Date(lastDate);
       const newDataPoint = {
         time: data.time, // UNIX timestamp
         open: Number(data.open),

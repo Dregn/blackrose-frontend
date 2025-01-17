@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Paper } from '@mui/material';
+import { Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Paper } from '@mui/material';
 import useWebSocket from '../../hooks/useWebSocket';
 
 const DynamicTable = () => {

@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import store from './redux/store';
 import theme from './styles/theme'; // Import the centralized theme
 import routesConfig from './routes/routesConfig';
 import ProtectedRoute from './routes/ProtectedRoute';

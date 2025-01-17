@@ -13,7 +13,7 @@ export const fetchRecords = createAsyncThunk('table/fetchRecords', async (_, { r
 
 export const addRecord = createAsyncThunk('table/addRecord', async (newRecord, { rejectWithValue }) => {
   try {
-    const response = await axios.post('/record/', newRecord);
+    await axios.post('/record/', newRecord);
     return newRecord; // Only return the record to avoid adding the success message to the table
   } catch (error) {
     return rejectWithValue(error.response?.data || error.message);

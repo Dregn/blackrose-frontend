@@ -37,7 +37,7 @@ export const WebSocketProvider = ({ endpoint, children }) => {
       if (socket) socket.close();
       if (reconnectTimeout) clearTimeout(reconnectTimeout);
     };
-  }, [endpoint]);
+  }, [endpoint,socket]);
 
   const sendMessage = (event, message) => {
     if (socket) {
