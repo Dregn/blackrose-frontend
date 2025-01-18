@@ -37,14 +37,13 @@ const AppRoutes = (routes) => {
 
 const App = () => {
   return (
-    <WebSocketProvider endpoint="/ohlc-stream/">
+  
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
           <Routes>{AppRoutes(routesConfig)}</Routes>
         </Router>
       </ThemeProvider>
-      </WebSocketProvider>
   );
 };
 

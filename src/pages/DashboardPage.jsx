@@ -3,8 +3,9 @@ import Navbar from '../components/Shared/Navbar';
 import RealTimeChart from '../components/Chart/RealTimeChart';
 import DynamicTable from '../components/Table/DynamicTable';
 import { Box, Typography, Paper, Grid } from '@mui/material';
+import { WebSocketProvider, useWebSocketContext } from "../contexts/WebSocketContext";
 
-const DashboardPage = () => {
+const Dashboard = () => {
   return (
     <Box className="min-h-screen bg-gray-900 text-white">
       <Navbar />
@@ -48,5 +49,11 @@ const DashboardPage = () => {
     </Box>
   );
 };
+
+const DashboardPage = () => (
+  <WebSocketProvider endpoint="/ohlc-stream/">
+    <Dashboard />
+  </WebSocketProvider>
+);
 
 export default DashboardPage;
