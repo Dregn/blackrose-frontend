@@ -1,9 +1,10 @@
 import { io } from "socket.io-client";
 
+let socket = null;
 const createSocketConnection = (endpoint, onData, onReconnect, onError) => {
   const serverUrl = "https://blackrose-assignment.onrender.com"; // Update with your backend URL
   const retryInterval = 120000; // Retry after 2 minutes (120,000 ms)
-  let socket = null; // Global socket instance
+   // Global socket instance
   let isManuallyClosed = false;
 
   const connect = () => {
@@ -17,6 +18,8 @@ const createSocketConnection = (endpoint, onData, onReconnect, onError) => {
 
     try {
       // Initialize the Socket.IO connection with WebSocket-only transport and custom headers
+      if (!socket)
+        {
       socket = io(serverUrl, {
         extraHeaders: {
             Authorization: `Bearer ${authToken}`,
@@ -31,6 +34,7 @@ const createSocketConnection = (endpoint, onData, onReconnect, onError) => {
         console.log("Connected to the server");
         socket.emit("ohlc-stream", { message: "Start streaming OHLC data" });
       });
+    }
 
       // Listen for incoming data
       socket.on("ohlc-data", (data) => {
@@ -82,7 +86,9 @@ const createSocketConnection = (endpoint, onData, onReconnect, onError) => {
   };
 
   // Start the connection
+
   connect();
+  
 
   return { send, close };
 };

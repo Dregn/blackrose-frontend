@@ -4,7 +4,6 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import theme from './styles/theme'; // Import the centralized theme
 import routesConfig from './routes/routesConfig';
 import ProtectedRoute from './routes/ProtectedRoute';
-import { WebSocketProvider } from './contexts/WebSocketContext';
 
 const AppRoutes = (routes) => {
   const renderRoutes = (routes) =>

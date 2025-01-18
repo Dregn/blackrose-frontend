@@ -23,7 +23,7 @@ const RealTimeChart = () => {
   // Generate initial dummy data
   const generateInitialData = () => {
     const initialData = [];
-    let currentDate = lastDate
+    let currentDate = new Date()
    
     let previousClose = 150; // Arbitrary starting price
 
@@ -44,7 +44,6 @@ const RealTimeChart = () => {
       previousClose = close;
       currentDate.setDate(currentDate.getDate() + 1); 
     }
-
     setLastDate(currentDate); // Save the last date for further increments
     return initialData;
   };
@@ -119,16 +118,19 @@ const RealTimeChart = () => {
   return (
     <Box sx={{ position: 'relative', width: '100%', height: '400px' }}>
       {!data && (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%',
-          }}
-        >
-          <CircularProgress />
-        </Box>
+         <Box
+         sx={{
+           display: 'flex',
+           justifyContent: 'center',
+           alignItems: 'center',
+           height: '100%',
+           position: 'absolute',
+           width: '100%',
+           zIndex: 10, // Ensure CircularProgress overlays the chart
+         }}
+       >
+         <CircularProgress />
+       </Box>
       )}
       <div ref={chartContainerRef}></div>
     </Box>
