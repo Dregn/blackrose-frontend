@@ -86,8 +86,8 @@ Ensure you have the following installed:
 ## Environment Variables
 Update the `.env` file to configure your API and WebSocket server endpoints:
 ```env
-REACT_APP_API_URL=http://localhost:8000
-REACT_APP_SOCKET_URL=http://localhost:8000
+REACT_APP_API_URL=https://blackrose-assignment.onrender.com
+REACT_APP_SOCKET_URL=https://blackrose-assignment.onrender.com
 ```
 
 ## Dependencies

@@ -4,7 +4,7 @@ import { logout, login } from '../redux/authSlice';
 import { refreshAuthToken } from './authService'; // Function to refresh token
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000', // Replace with your backend's base URL
+  baseURL: 'https://blackrose-assignment.onrender.com', // Replace with your backend's base URL
   timeout: 5000,
 });
 

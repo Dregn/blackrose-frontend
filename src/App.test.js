@@ -1,7 +1,7 @@
 const { io } = require("socket.io-client");
 
 // Server URL
-const serverUrl = "http://localhost:8000";
+const serverUrl = "https://blackrose-assignment.onrender.com";
 
 // JWT Token
 const authToken =

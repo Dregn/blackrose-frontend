@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 const createSocketConnection = (endpoint, onData, onReconnect, onError) => {
-  const serverUrl = "http://localhost:8000"; // Update with your backend URL
+  const serverUrl = "https://blackrose-assignment.onrender.com"; // Update with your backend URL
   const retryInterval = 120000; // Retry after 2 minutes (120,000 ms)
   let socket = null; // Global socket instance
   let isManuallyClosed = false;
