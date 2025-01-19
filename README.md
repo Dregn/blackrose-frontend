@@ -1,3 +1,4 @@
+
 # BlackRose Frontend
 
 ## Overview
@@ -7,14 +8,19 @@ BlackRose Frontend is a React-based application designed for real-time charting,
 - **Authentication**
   - Login functionality with JWT-based authorization.
   - Protected routes to secure specific pages.
+  - Login using any username and password.
 
 - **Real-Time Charting**
   - Displays real-time OHLC data using Lightweight Charts.
-  - WebSocket support for streaming data.
+  - WebSocket support for streaming data with authentication.
 
 - **CSV Record Management**
   - View, edit, add, and delete records from a table.
   - Pagination support for large datasets.
+  - Backend integration to manage CSV table data.
+
+- **Real-Time Updates**
+  - Real-time updates in both the chart and table views using Socket.IO for authenticated WebSocket connections.
 
 ## Project Structure
 ```plaintext
@@ -51,9 +57,13 @@ src/
 │   ├── ProtectedRoute.jsx
 │   ├── routesConfig.js
 ├── services/
+│   ├── api.js
 │   ├── createSocketConnection.js
 ├── styles/
 │   ├── tailwind.css
+│   ├── index.css
+│   ├── theme.js
+│   ├── colors.js
 ├── App.jsx
 ├── index.js
 ```
@@ -91,18 +101,18 @@ REACT_APP_SOCKET_URL=https://blackrose-assignment.onrender.com
 ```
 
 ## Dependencies
+
 ### Key Dependencies
 - **React**: UI library.
 - **Redux Toolkit**: State management.
 - **Material-UI (MUI)**: UI components.
 - **Tailwind CSS**: Utility-first CSS framework.
 - **Socket.IO**: WebSocket communication.
-- **Lightweight Charts**: Financial charting library.
+- **Lightweight Charts**: Financial charting library from TradingView.
 
 ### Dev Dependencies
 - **TailwindCSS**: Styling.
 - **PostCSS**: CSS post-processing.
-- **Chart.js Adapter for Date-FNS**: Date formatting for charts.
 
 ## Scripts
 - `npm start`: Starts the development server.
@@ -111,6 +121,7 @@ REACT_APP_SOCKET_URL=https://blackrose-assignment.onrender.com
 - `npm run eject`: Ejects the configuration (not recommended).
 
 ## API Endpoints
+
 ### Authentication
 - **POST** `/auth/login`: Logs in the user and returns a JWT token.
 
@@ -124,41 +135,21 @@ REACT_APP_SOCKET_URL=https://blackrose-assignment.onrender.com
 - **Endpoint**: `/ohlc-stream/`
   - Real-time OHLC data stream.
 
-## WebSocket Integration
-The application uses Socket.IO for real-time data. Here is an example WebSocket setup:
-```javascript
-const socket = io(serverUrl, {
-  extraHeaders: {
-    Authorization: `Bearer ${authToken}`,
-  },
-  transports: ["polling"],
-});
-```
+## How to Use
 
-## Components Overview
-### Navbar
-- Displays navigation links (`Dashboard`, `CSV Records`) with dynamic highlighting based on the active route.
-- Logout functionality.
+1. **Login**:
+   - Use any username and password to log in.
 
-### RealTimeChart
-- Implements a candlestick chart using Lightweight Charts.
-- Consumes OHLC data from the WebSocket context.
+2. **Dashboard**:
+   - View real-time charts displaying OHLC data.
+   - The table below the chart shows real-time updates.
 
-### EditableTable
-- Provides functionalities to view, edit, add, and delete records.
-- Includes validation and error handling using Toasts.
-
-## Contexts
-### WebSocket Context
-Centralizes WebSocket logic for sharing real-time data across components.
-
-### Usage
-```jsx
-import { useWebSocketContext } from '../contexts/WebSocketContext';
-const { data, sendMessage } = useWebSocketContext();
-```
+3. **CSV Records**:
+   - Add, edit, delete, and view records from the backend CSV table.
+   - Features include pagination for managing large datasets.
 
 ## Styling
+
 ### Tailwind CSS
 The project uses Tailwind CSS for a consistent and responsive design. Key styles are defined in `tailwind.config.js`.
 
@@ -179,6 +170,8 @@ The production-ready code will be available in the `build/` directory.
 
 Deploy the `build/` directory to your preferred hosting service (e.g., Netlify, Vercel, or AWS S3).
 
+The app is available at [https://blackrose-frontend.pages.dev/](https://blackrose-frontend.pages.dev/).
+
 ## Contributing
 1. Fork the repository.
 2. Create a feature branch:
@@ -197,4 +190,3 @@ Deploy the `build/` directory to your preferred hosting service (e.g., Netlify, 
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
-
