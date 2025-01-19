@@ -13,8 +13,15 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const theme = useTheme(); // Access the theme
 
+    const [loginError, setLoginError] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+        // Basic validation
+        if (!username || !password || username =="" || password =="") {
+          setLoginError('Username and password are required');
+          return;
+        }
     try {
       const response = await loginUser(username, password);
       dispatch(login({ token: response.data.access_token,refresh_token: response.data.refresh_token }));
@@ -56,7 +63,7 @@ const LoginPage = () => {
         >
           Login
         </Typography>
-        {error && <Alert severity="error" sx={{ marginBottom: 2 }}>{error}</Alert>}
+        {error || loginError && <Alert severity="error" sx={{ marginBottom: 2 }}>{`${error} ${loginError}` }</Alert>}
         <TextField
           fullWidth
           label="Username"
